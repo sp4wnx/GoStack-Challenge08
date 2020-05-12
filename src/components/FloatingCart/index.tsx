@@ -15,9 +15,6 @@ import formatValue from '../../utils/formatValue';
 
 import { useCart } from '../../hooks/cart';
 
-// Calculo do total
-// Navegação no clique do TouchableHighlight
-
 const FloatingCart: React.FC = () => {
   const { products } = useCart();
 
@@ -53,7 +50,11 @@ const FloatingCart: React.FC = () => {
     <Container>
       <CartButton
         testID="navigate-to-cart-button"
-        onPress={() => navigation.navigate('Cart')}
+        onPress={() => {
+          if (totalItensInCart > 0) {
+            navigation.navigate('Cart');
+          }
+        }}
       >
         <FeatherIcon name="shopping-cart" size={24} color="#fff" />
         <CartButtonText>{`${totalItensInCart} itens`}</CartButtonText>
